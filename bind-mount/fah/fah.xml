@@ -1,0 +1,11 @@
+<config>
+  <user>Anonymous</user>
+  <team>0</team>
+  <passkey></passkey>
+  <smp>true</smp>
+  <gpu>false</gpu>
+  <cpus>1</cpus>
+  <power>full</power>
+  <allow>0/0</allow>
+  <web-allow>0/0</web-allow>
+</config>

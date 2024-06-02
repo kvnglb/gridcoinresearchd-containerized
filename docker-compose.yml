@@ -1,0 +1,58 @@
+version: "3.8"
+
+name: gridcoin
+services:
+  boinc:
+    container_name: gridcoin_boinc
+    build: ./boinc
+    volumes:
+      - boinc:/var/lib/boinc:z
+    restart: always
+
+  gridcoin:
+    container_name: gridcoin_gridcoin
+    build:
+      context: ./gridcoin
+
+      # Uncomment the needed architecture
+      args:
+        # amd64
+        #DEB_FILE: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_amd64.deb
+        #DEB_FILE_HASH: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_amd64.deb.SHA256
+
+        # arm64
+        #DEB_FILE: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_arm64.deb
+        #DEB_FILE_HASH: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_arm64.deb.SHA256
+
+    # Uncomment the ports, when inbound connections should be allowed. Also make sure to allow the port in the firewall, for firewalld
+    # e.g. with `firewall-cmd --permanent --add-port 32749/tcp` followed by `systemctl reload firewalld`.
+    #ports:
+    #  - "32749:32749"
+
+    volumes:
+      - ./bind-mount/gridcoin:/root/.GridcoinResearch:Z
+      - boinc:/var/lib/boinc-client:z,ro
+    restart: always
+
+  fah:
+    container_name: gridcoin_fah
+    build:
+      context: ./fah
+
+      # Uncomment the needed architecture
+      args:
+        # amd64
+        #DEB_FILE: https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb
+
+        # arm64
+        #DEB_FILE: https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-arm64/v7.6/fahclient_7.6.21_arm64.deb
+
+    ports:
+      - "127.0.0.1:7396:7396"
+    volumes:
+      - ./bind-mount/fah/fah.xml:/var/lib/fahclient/config.xml:Z,ro
+    restart: always
+
+volumes:
+  boinc:
+    driver: local
