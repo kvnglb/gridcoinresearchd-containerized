@@ -55,7 +55,7 @@ Everything is done, nothing more to do.
 
 Join the boinc projects you want to contribute to at their websites. When you cannot setup a boinc account at the projects website, skip the modification of the makefile. CLI commands of the boinc client will work once the container is running. Then, it is possbile to join projects from the boinc client and to attach the projects manually (will be explained later).
 
-Edit the Makefile and modify the lines in `add_project` as wanted. The private key can be found in the respective boinc project in `Your account -> section Account information -> Account keys`. When the CPID has already settled, you can use the weak account key (recommended), otherwise you must use the other account key, that boinc can sync the cross-project ID.
+Edit the Makefile and modify the lines in `attach_projects` as wanted. The private key can be found in the respective boinc project in `Your account -> section Account information -> Account keys`. When the CPID has already settled, you can use the weak account key (recommended), otherwise you must use the other account key, that boinc can sync the cross-project ID.
 
 ## fah.xml (only for crunching Folding@home)
 - Get a passkey at https://foldingathome.org/support/faq/points/passkey/
@@ -87,7 +87,7 @@ Investors, who don't need boinc can skip all steps but the last one.
       ```
     - Attach your projects, run
       ```
-      make add_projects
+      make attach_projects
       ```
     - Adjust the percentage for how much CPU boinc should use. E.g a machine with 16 cores will use 8 for boinc with
       ```

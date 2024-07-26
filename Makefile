@@ -1,6 +1,6 @@
 BOINC=podman exec gridcoin_boinc
 
-add_projects:
+attach_projects:
 	-$(BOINC) boinccmd --project_attach https://boinc.bakerlab.org/rosetta/ <priv_key>
 	-$(BOINC) boinccmd --project_attach https://escatter11.fullerton.edu/nfs/ <priv_key>
 	-$(BOINC) boinccmd --project_attach <another_project_url> <priv_key>
