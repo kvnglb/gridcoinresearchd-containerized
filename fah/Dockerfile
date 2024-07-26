@@ -10,7 +10,7 @@ WORKDIR /root/Downloads
 
 RUN wget $DEB_FILE
 
-RUN apt-get -y install ./fahclient*.deb
+RUN apt-get -y install ./fah*.deb
 
 WORKDIR /var/lib/fahclient
 

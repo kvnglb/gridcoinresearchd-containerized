@@ -42,10 +42,10 @@ services:
       # Uncomment the needed architecture
       args:
         # amd64
-        #DEB_FILE: https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb
+        #DEB_FILE: https://download.foldingathome.org/releases/public/fah-client/debian-10-64bit/release/fah-client_8.3.18_amd64.deb
 
         # arm64
-        #DEB_FILE: https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-arm64/v7.6/fahclient_7.6.21_arm64.deb
+        #DEB_FILE: https://download.foldingathome.org/releases/public/fah-client/debian-stable-arm64/release/fah-client_8.3.18_arm64.deb
 
     ports:
       - "127.0.0.1:7396:7396"
