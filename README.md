@@ -44,25 +44,23 @@ on the desired machine.
 Edit the file `./bind-mount/gridcoin/gridcoinresearch.conf` and enter a password for the rpc user
 
 ### INVESTOR MODE
-everything is done, nothing more to do
+Everything is done, nothing more to do.
 
 ### CRUNCHING MODE
 - If you plan to also use the boinc container on that machine (does not matter if it crunches or stays idle, when at least one project is added), enter the email address that is used for the boinc project OR
 - if the cross-project ID has already settled or the wallet runs on a machine, where boinc should't run, enter the CPID manually.
 
-## fah.xml (only for crunching)
-If you want to crunch on folding at home, edit its config `./bind-mount/fah/fah.xml`
-- change your username in `<user>`. Must comply with `<name>_GRC_<CPID>`[^2]
-- optionally change the team in `<team>`
-- optionally enter your passkey in `<passkey>` (gives more points, and thereforce more GRC)[^3]
-- adjust the number of CPU cores, you want to use in `<cpus>`
-
-No need to modify the rest. Don't worry about the `0/0` entries. As visible in the compose file, Fah will only bind its listen port on localhost.
-
-## Makefile (only for crunching)
+## Makefile (only for crunching boinc)
 *Well.. Ahm, yes. Maybe makefiles are not intended for this, anyway...*
 
 This file is used to setup boinc and is only relevant for crunchers. Edit the Makefile and modify the lines in `add_project` as wanted. The private key can be found in the respective boinc project in `Your account -> section Account information -> Account keys`. When the CPID has already settled, you can use the weak account key (recommended), otherwise you must use the other account key, that boinc can sync the cross-project ID.
+
+## fah.xml (only for crunching Folding@home)
+- Get a passkey at https://foldingathome.org/support/faq/points/passkey/
+- Register at https://v8-3.foldingathome.org/ . Your user name must comply with `<name>_GRC_<CPID>`[^2]
+- Edit the config `./bind-mount/fah/fah.xml`
+  - Replace `TOKEN` in `<account-token>` with your token from https://v8-3.foldingathome.org/ -> Account settings and logout -> Token
+  - optionally change the machine name
 
 ## Compose file
 Adjust the `docker-compose.yml` file.
@@ -158,7 +156,7 @@ When more projects are addes
 ```
 podman exec gridcoin_boinc boinccmd --get_state | grep -i cross
 ```
-should show the same cross-project ID. If not, wait a few days.
+should show the same cross-project ID. If CPIDs do not match, wait a few days.
 
 ```
 podman exec gridcoin_boinc boinccmd --get_state | grep -i job
@@ -166,13 +164,8 @@ podman exec gridcoin_boinc boinccmd --get_state | grep -i job
 Numbers should increase. Ideally not the `failed` one.
 
 ### Folding@home
-`htop` like for boinc. To get the web control, forward your local port to the machine. Run on your local machine (not the server that is crunching)
-```
-ssh -NCL 7396:localhost:7396 <user>@<crunching machine ip>
-```
-and then enter in your browser `http://localhost:7396/`.
-
+- The container should be visible and controllable in https://v8-3.foldingathome.org/
+- When the container starts folding, `htop` like for boinc.
 
 [^1]: I haven't found a comfortable way getting the GPU to work with containers.
 [^2]: https://gridcoin.us/guides/foldingathome.htm
-[^3]: https://foldingathome.org/support/faq/points/passkey/
