@@ -1,8 +1,8 @@
-FROM debian:bookworm
+FROM debian:trixie
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG DEB_FILE
-ARG DEB_FILE_HASH
+ARG DEB_FILE_SHA256
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install wget
@@ -10,9 +10,8 @@ RUN apt-get -y install wget
 WORKDIR /root/Downloads
 
 RUN wget $DEB_FILE
-RUN wget $DEB_FILE_HASH
 
-RUN if [ "$(sha256sum gridcoinresearchd*.deb | cut -d ' ' -f1)" = "$(cat *.SHA256 | cut -d ' ' -f 1)" ]; then \
+RUN if [ "$(sha256sum gridcoinresearchd*.deb | cut -d ' ' -f1)" = $DEB_FILE_SHA256 ]; then \
       exit 0; \
     else \
       echo "Checksum does not match"; exit 1; \

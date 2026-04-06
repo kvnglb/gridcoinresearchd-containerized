@@ -171,9 +171,10 @@ When the balance of the wallet should be automatically logged regularly, add `wa
 ```
 This will log every day at 5 a.m. the balance, whether the wallet is able to stake and the magnitude. The file `balance.log` in the home directory of the user will look like
 ```
-2024-05-18 05:00:02 5000.123 true 80
-2024-05-25 05:00:03 5200.456 true 81
-2024-05-26 05:00:03 5220.789 true 79
+2024-05-24 05:00:02 5000.123 "No mature coins" 80
+2024-05-25 05:00:03 5200.456 "No mature coins" 81
+2024-05-26 05:00:03 5200.456 "Wallet locked" 79
+2024-05-27 05:00:03 5200.456 "Wallet locked" 82
 ```
 
 [^1]: I haven't found a comfortable way getting the GPU to work with containers.

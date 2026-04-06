@@ -17,12 +17,12 @@ services:
       # Uncomment the needed architecture
       args:
         # amd64
-        #DEB_FILE: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_amd64.deb
-        #DEB_FILE_HASH: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_amd64.deb.SHA256
+        #DEB_FILE: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.5.0.0/gridcoinresearchd_5.5.0.0.trixie-2_amd64.deb
+        #DEB_FILE_SHA256: ef9bd110998cf2641d08f60a2b41f059e79a50ebb84844199979c832e4432d83
 
         # arm64
-        #DEB_FILE: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_arm64.deb
-        #DEB_FILE_HASH: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.4.8.0/gridcoinresearchd_5.4.8.0.bookworm-1_arm64.deb.SHA256
+        #DEB_FILE: https://github.com/gridcoin-community/Gridcoin-Research/releases/download/5.5.0.0/gridcoinresearchd_5.5.0.0.trixie-2_arm64.deb
+        #DEB_FILE_SHA256: 30f51471c70fd11f2a6cdc0389cca351e826ea655cf902faa4e41140593c0a0e
 
     # Uncomment the ports, when inbound connections should be allowed. Also make sure to allow the port in the firewall, for firewalld
     # e.g. with `firewall-cmd --permanent --add-port 32749/tcp` followed by `systemctl reload firewalld`.
